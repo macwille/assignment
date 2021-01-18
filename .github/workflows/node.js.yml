@@ -40,3 +40,4 @@ jobs:
           appdir: "backend"
         env:
           HD_APP_BASE: "backend"
+          API_URL: ${{secrets.API_URL}}
