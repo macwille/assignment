@@ -39,5 +39,5 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: "backend"
         env:
+          HD_API_URL: ${{secrets.API_URL}}
           HD_APP_BASE: "backend"
-          API_URL: ${{secrets.API_URL}}
