@@ -1,2 +1,2 @@
 export const API_URL = '/api'
-export const TITLE = 'Your Title'
+export const TITLE = 'Set title in config.js'

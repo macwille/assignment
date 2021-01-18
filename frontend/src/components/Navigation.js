@@ -1,13 +1,14 @@
+import { Box, Button } from '@material-ui/core'
 import React from 'react'
 
 const Navigation = () => {
 
   return (
-    <div>
-      <button href="/">Home</button>
-      <button href="/">Store</button>
-      <button href="/">Info</button>
-    </div>
+    <Box>
+      <Button href="/">Home</Button>
+      <Button href="/">Store</Button>
+      <Button href="/">Info</Button>
+    </Box>
   )
 }
 

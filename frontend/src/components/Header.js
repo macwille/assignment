@@ -1,17 +1,20 @@
+import { Container, Paper, Typography } from '@material-ui/core'
 import React from 'react'
 
 const Header = ({ title }) => {
   if (title) {
     return (
-      <div>
-        <h2>{title}</h2>
-      </div>
+      <Paper>
+        <Container >
+          <Typography variant="h4" paragraph>{title}</Typography>
+        </Container>
+      </Paper>
     )
   }
   return (
-    <div>
-      <h2>No title given</h2>
-    </div>
+    <Paper>
+      <Typography variant="h4" paragraph>No title given</Typography>
+    </Paper>
   )
 }
 

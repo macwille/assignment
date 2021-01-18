@@ -2,24 +2,55 @@ import React, { useState } from 'react'
 import Masks from './Masks'
 import Beanies from './Beanies'
 import Gloves from './Gloves'
+import { Box, AppBar, Tabs, Tab, Typography, Paper } from '@material-ui/core'
+
+const TabPanel = (props) => {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  )
+}
 
 const Products = () => {
-  const [selected, setSelected] = useState('facemasks')
+  const [value, setValue] = useState(0)
 
-  const handleSelect = (value) => {
-    setSelected(value)
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+
   }
 
   return (
-    <div>
-      <h4>Products: {selected}</h4>
-      <button onClick={() => handleSelect('facemasks')}>Masks</button>
-      <button onClick={() => handleSelect('beanies')}>Beanies</button>
-      <button onClick={() => handleSelect('gloves')}>Gloves</button>
-      {selected === 'facemasks' && <Masks />}
-      {selected === 'beanies' && <div><Beanies /></div>}
-      {selected === 'gloves' && <div><Gloves /></div>}
-    </div>
+    <Paper>
+      <AppBar position="static">
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="Facemasks" />
+          <Tab label="Beanies" />
+          <Tab label="Gloves" />
+        </Tabs>
+      </AppBar>
+      <TabPanel p={0} value={value} index={0}>
+        <Masks />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Beanies />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Gloves />
+      </TabPanel>
+    </Paper>
   )
 
 }

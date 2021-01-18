@@ -2,14 +2,17 @@ import React from 'react'
 import { TITLE } from './config'
 import Header from './components/Header'
 import Products from './components/Products'
+import Footer from './components/Footer'
+import { Container } from '@material-ui/core'
 
 const App = () => {
 
   return (
-    <div>
+    <Container>
       <Header title={TITLE} />
       <Products />
-    </div>
+      <Footer/>
+    </Container>
   )
 }
 

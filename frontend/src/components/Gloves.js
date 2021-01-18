@@ -1,6 +1,9 @@
+import { Box, CircularProgress, Typography } from '@material-ui/core'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getInitial } from '../reducers/gloveReducer'
+import ProductTable from './ProductTable'
+
 
 const Gloves = () => {
 
@@ -8,26 +11,21 @@ const Gloves = () => {
   const gloves = useSelector(state => state.gloves)
 
   useEffect(() => {
-    console.log('Gloves effect')
     dispatch(getInitial())
   }, [dispatch])
 
   if (!gloves) {
     return (
-      <div>
-        <h2>Loading...</h2>
-      </div>
+      <Box>
+        <CircularProgress />
+      </Box>
     )
   }
 
   return (
-    <div>
-      <ul>
-        {gloves.map(glove =>
-          <li key={glove.id}>{glove.name}: {glove.manufacturer}</li>
-        )}
-      </ul>
-    </div>
+    <Box>
+      <ProductTable products={gloves} />
+    </Box>
   )
 }
 
