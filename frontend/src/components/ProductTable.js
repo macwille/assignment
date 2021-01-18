@@ -1,4 +1,4 @@
-import { TableContainer, Table, TableHead, TableBody, TableFooter, TableCell, TableRow, TablePagination, Typography, makeStyles } from '@material-ui/core'
+import { TableContainer, Table, TableHead, TableBody, TableFooter, TableCell, TableRow, TablePagination, makeStyles } from '@material-ui/core'
 import React, { useState } from 'react'
 
 const useStyles = makeStyles({

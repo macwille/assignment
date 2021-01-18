@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box, CircularProgress, Typography } from '@material-ui/core'
+import { Box, CircularProgress } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { getInitial } from '../reducers/beanieReducer'
 import ProductTable from './ProductTable'
