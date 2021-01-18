@@ -39,5 +39,5 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: "backend"
         env:
-          API_URL: "https://bad-api-assignment.reaktor.com/v2"
+          API_URL: "/products"
           HD_APP_BASE: "backend"
