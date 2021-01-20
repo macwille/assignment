@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   }
 })
 
-const ProductTable = ({ products }) => {
+const ProductTable = ({ products, type }) => {
   const classes = useStyles()
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(1)
@@ -57,7 +57,7 @@ const ProductTable = ({ products }) => {
                 {product.price}€
                 </TableCell>
               <TableCell>
-                <AvailabilityInfo id={product.id} manufacturer={product.manufacturer} />
+                <AvailabilityInfo id={product.id} manufacturer={product.manufacturer} type={type} />
               </TableCell>
             </TableRow>
           ))}

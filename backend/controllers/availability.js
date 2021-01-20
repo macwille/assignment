@@ -12,10 +12,8 @@ availabilityRouter.get('/:manufacturer/:id', async (req, res) => {
   try {
     const availability = await axios.get(availabilityUrl + '/' + manufacturer).then((serverResponse) => serverResponse.data)
     const data = availability.response.find(obj => obj.id === id.toUpperCase())
-    console.log('data', data)
     res.send(data.DATAPAYLOAD)
   } catch (error) {
-    console.log(error)
     res.send('Error getting data')
   }
 })

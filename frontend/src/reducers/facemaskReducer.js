@@ -4,17 +4,46 @@ export const getInitial = () => {
   return async dispatch => {
     const facemasks = await productService.getMasks()
     dispatch({
-      type: 'GET_MASKS',
+      type: 'GET_INITIAL_MASKS',
       data: facemasks,
     })
   }
 }
 
-const productReducer = (state = null, action) => {
-  if (action.type === 'GET_MASKS') {
-    return action.data
+export const getMasks = () => {
+  return {
+    type: 'GET_MASKS'
   }
-  return state
 }
 
-export default productReducer
+export const updateAvailability = (id, availability) => {
+  return {
+    type: 'UPDATE_MASK',
+    data: {
+      id, availability
+    }
+  }
+}
+
+const facemaskReducer = (state = null, action) => {
+  switch (action.type) {
+    case 'GET_INITIAL_MASKS':
+      return action.data
+    case 'GET_MASKS':
+      return state
+    case 'UPDATE_MASK':
+      const id = action.data.id
+      const toChange = state.find(mask => mask.id === id)
+      const changedMask = {
+        ...toChange,
+        availability: action.data.availability
+      }
+      return state.map(mask =>
+        mask.id !== id ? mask : changedMask
+      )
+    default:
+      return state
+  }
+}
+
+export default facemaskReducer

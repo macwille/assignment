@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Box, CircularProgress } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { getInitial } from '../reducers/beanieReducer'
+import { getBeanies, getInitial } from '../reducers/beanieReducer'
 import ProductTable from './ProductTable'
 
 const Beanies = () => {
@@ -9,8 +9,11 @@ const Beanies = () => {
   const beanies = useSelector(state => state.beanies)
 
   useEffect(() => {
-    dispatch(getInitial())
-  }, [dispatch])
+    if (!beanies) {
+      dispatch(getInitial())
+    }
+    dispatch(getBeanies())
+  }, [dispatch, beanies])
 
   if (!beanies) {
     return (
@@ -22,7 +25,7 @@ const Beanies = () => {
 
   return (
     <Box>
-      <ProductTable products={beanies} />
+      <ProductTable products={beanies} type={'beanies'} />
     </Box>
   )
 }
