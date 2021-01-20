@@ -28,7 +28,7 @@ const ProductTable = ({ products, type }) => {
 
   return (
     <TableContainer >
-      <Table size="small" className={classes.root}>
+      <Table className={classes.root}>
         <TableHead>
           <TableRow>
             <TableCell>#</TableCell>

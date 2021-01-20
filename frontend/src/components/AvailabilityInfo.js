@@ -11,7 +11,6 @@ const AvailabilityInfo = ({ id, type }) => {
   const product = useSelector(state => state[type]).find(o => o.id === id)
   const dispatch = useDispatch()
   const [info, setInfo] = useState(null)
-  console.log(product)
 
   const typeDispatch = data => {
     if (type === 'beanies') {
@@ -27,9 +26,11 @@ const AvailabilityInfo = ({ id, type }) => {
 
   const getInfo = async (event) => {
     event.preventDefault()
+    typeDispatch(null)
     setInfo('Loading')
     const availability = await availabilityRouter.getAvailability(id, product.manufacturer)
-    const result = availability.split(/<INSTOCKVALUE>([A-Za-z.@]+)<\/INSTOCKVALUE>/).filter((t, i) => i % 2)
+    const result = availability.split(/<INSTOCKVALUE>([a-zA-Z0-9_.-]+)<\/INSTOCKVALUE>/).filter((t, i) => i % 2)
+    console.log('Result', result[0])
     if (result[0] === 'INSTOCK') {
       setInfo('In stock')
       typeDispatch('In stock')
@@ -38,13 +39,17 @@ const AvailabilityInfo = ({ id, type }) => {
       setInfo('Out of stock')
       typeDispatch('Out of Stock')
     }
+    if (result[0] === 'LESSTHAN10') {
+      setInfo('Less than 10')
+      typeDispatch('Less than 10')
+    }
     if (!result[0]) {
       setInfo('Error')
       typeDispatch('Error')
     }
   }
 
-  const render = () => {
+  const renderNotAvailable = () => {
     if (info) {
       if (info === 'Error') {
         return (
@@ -65,15 +70,22 @@ const AvailabilityInfo = ({ id, type }) => {
       <Button size="small" variant="outlined" color="primary" onClick={getInfo}>Get</Button>
     )
   }
-  console.log('Product avail?', product.availability)
+  const renderAvailable = () => {
+    if (product.availability === 'Error') {
+      return (
+        <Button size="small" variant="outlined" color="error" onClick={getInfo}>Try Again</Button>
+      )
+    }
+    return product.availability
+  }
 
   return (
     <Box>
       <div>
         {!product.availability ?
-          render()
+          renderNotAvailable()
           :
-          product.availability
+          renderAvailable()
         }
       </div>
     </Box>
