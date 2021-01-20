@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 const ProductTable = ({ products, type }) => {
   const classes = useStyles()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(1)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -65,7 +65,7 @@ const ProductTable = ({ products, type }) => {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[1, 10, 50, 100, 500]}
+              rowsPerPageOptions={[10, 50, 100, 500]}
               colSpan={3}
               count={products.length}
               rowsPerPage={rowsPerPage}
