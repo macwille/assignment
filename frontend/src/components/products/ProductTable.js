@@ -1,6 +1,15 @@
-import { TableContainer, Table, TableHead, TableBody, TableFooter, TableCell, TableRow, TablePagination, makeStyles } from '@material-ui/core'
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import AvailabilityInfo from './AvailabilityInfo'
+
+import TableContainer from '@material-ui/core/TableContainer'
+import Table from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableBody from '@material-ui/core/TableBody'
+import TableFooter from '@material-ui/core/TableFooter'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
+import TablePagination from '@material-ui/core/TablePagination'
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -22,11 +31,9 @@ const ProductTable = ({ products, type }) => {
     setPage(0)
   }
 
-  if (!products) {
-    return null
-  }
-
-  return (
+  return !products ?
+    null
+    :
     <TableContainer >
       <Table className={classes.root}>
         <TableHead>
@@ -77,7 +84,7 @@ const ProductTable = ({ products, type }) => {
         </TableFooter>
       </Table>
     </TableContainer>
-  )
+
 }
 
 export default ProductTable

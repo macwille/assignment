@@ -2,7 +2,13 @@ import React, { useState } from 'react'
 import Masks from './Masks'
 import Beanies from './Beanies'
 import Gloves from './Gloves'
-import { Box, AppBar, Tabs, Tab, Typography, Paper } from '@material-ui/core'
+
+import Box from '@material-ui/core/Box'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props
@@ -16,7 +22,7 @@ const TabPanel = (props) => {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -41,7 +47,7 @@ const Products = () => {
           <Tab label="Gloves" />
         </Tabs>
       </AppBar>
-      <TabPanel p={0} value={value} index={0}>
+      <TabPanel value={value} index={0}>
         <Masks />
       </TabPanel>
       <TabPanel value={value} index={1}>
