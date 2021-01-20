@@ -1,5 +1,6 @@
 import { TableContainer, Table, TableHead, TableBody, TableFooter, TableCell, TableRow, TablePagination, makeStyles } from '@material-ui/core'
 import React, { useState } from 'react'
+import AvailabilityInfo from './AvailabilityInfo'
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
 const ProductTable = ({ products }) => {
   const classes = useStyles()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsPerPage, setRowsPerPage] = useState(1)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -34,6 +35,7 @@ const ProductTable = ({ products }) => {
             <TableCell align="left">Name</TableCell>
             <TableCell aling="right">Manufacturer</TableCell>
             <TableCell aling="right">Price €</TableCell>
+            <TableCell aling="right">Availability</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,7 +45,7 @@ const ProductTable = ({ products }) => {
           ).map((product, i) => (
             <TableRow key={product.id}>
               <TableCell>
-                {i + 1}
+                {i + (page * rowsPerPage + 1)}
               </TableCell>
               <TableCell>
                 {product.name}
@@ -54,13 +56,16 @@ const ProductTable = ({ products }) => {
               <TableCell>
                 {product.price}€
                 </TableCell>
+              <TableCell>
+                <AvailabilityInfo id={product.id} manufacturer={product.manufacturer} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[10, 50, 100, 500]}
+              rowsPerPageOptions={[1, 10, 50, 100, 500]}
               colSpan={3}
               count={products.length}
               rowsPerPage={rowsPerPage}
