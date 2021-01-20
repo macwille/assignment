@@ -4,11 +4,13 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 const productsRouter = require('./controllers/products')
+const availabilityRouter = require('./controllers/availability')
 
 app.use(cors())
 app.use(bodyParser.json())
 
 app.use('/api/products', productsRouter)
+app.use('/api/availability', availabilityRouter)
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.get('/*', (request, response) => {
