@@ -14,5 +14,3 @@ a Single page React application to show warehouse stock from an external API.
 * Material UI for CSS
 
 * Node with express for requests to legacy API resources
-
-* Bad availability solution for bad availability API
